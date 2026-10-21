@@ -1,0 +1,35 @@
+{
+  "id": "graph_coloring",
+  "display_name": "Graph Coloring",
+  "description": "Minimum vertex coloring on deterministic benchmark graphs, verified by recomputing conflict-freeness from the emitted assignment and compared against DSATUR and TabuCol baselines.",
+  "problem_shape": {
+    "objective": "Minimize the number of colors in a proper vertex coloring (no edge joins two same-colored vertices).",
+    "input_representation": "An undirected graph as an adjacency list, generated deterministically from a named instance (random G(n,p), queen graphs, planted k-partite).",
+    "output_representation": "One integer color per vertex.",
+    "constraints": [
+      "The coloring must be proper: zero conflicting edges when recomputed from the emitted assignment.",
+      "Color count is recomputed from the assignment, never taken from the solver's report.",
+      "Stochastic methods must report across the declared fixed seeds with a fixed iteration budget."
+    ],
+    "failure_modes": [
+      "Candidate beats greedy or DSATUR but loses to TabuCol at the same iteration budget.",
+      "Candidate reports a color count without a proper coloring behind it.",
+      "Candidate tuned on one instance family (e.g. G(n,0.5)) that regresses on queen or planted instances.",
+      "Wall-clock advantage from a lower-level language mistaken for an algorithmic win."
+    ],
+    "verification_kind": "benchmark"
+  },
+  "recommended_problem_template": "Find proper vertex colorings of benchmark graphs using fewer colors than descending-k TabuCol seeded from DSATUR at an equal iteration budget, across fixed seeds and all instance families.",
+  "compose_query_hints": [
+    "graph coloring",
+    "chromatic number",
+    "tabu search",
+    "Potts model antiferromagnet",
+    "spin glass ground state",
+    "constraint satisfaction phase transition",
+    "Kempe chain",
+    "frequency assignment",
+    "survey propagation",
+    "simulated annealing"
+  ]
+}

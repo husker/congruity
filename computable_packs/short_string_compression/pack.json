@@ -1,0 +1,31 @@
+{
+  "id": "short_string_compression",
+  "display_name": "Short String Compression",
+  "description": "Lossless compression for short structured records where every candidate must round-trip exactly and beat strong codec baselines on byte ratio.",
+  "problem_shape": {
+    "objective": "Minimize encoded byte length for short records while preserving exact decoding.",
+    "input_representation": "Sequences of 8-256 byte records such as HTTP headers, JSON snippets, log lines, or templated identifiers.",
+    "output_representation": "A byte string plus any shared dictionary or model state allowed by the benchmark.",
+    "constraints": [
+      "Every decoded record must exactly match its input.",
+      "Shared dictionaries or model state must be trained only on training data.",
+      "Compression ratio must include transmitted side information unless explicitly pre-shared."
+    ],
+    "failure_modes": [
+      "Lossy transforms that appear to compress but fail round-trip.",
+      "Dictionary leakage from held-out test data.",
+      "Beating stateless codecs while losing to stateful HPACK on HTTP-like data."
+    ],
+    "verification_kind": "roundtrip"
+  },
+  "recommended_problem_template": "Compress short structured records (8-256 bytes) with exact round-trip and a compression ratio better than the strongest stateful or dictionary baseline on a held-out corpus.",
+  "compose_query_hints": [
+    "short string compression",
+    "HTTP header compression",
+    "biosequence tokenization",
+    "finite state coding",
+    "dictionary compression",
+    "arithmetic coding",
+    "small alphabet transforms"
+  ]
+}

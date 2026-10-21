@@ -1,0 +1,28 @@
+{
+  "run_id": "demo",
+  "status": "complete",
+  "problem": "DEMONSTRATION ONLY — synthetic saved-run fixture. Can graph partitioning help a fixed graph-colouring baseline? No experiment has been run.",
+  "corpus_size": 0,
+  "topics_covered": 0,
+  "scoring_coverage": 0,
+  "dimensions": [],
+  "compositions": [
+    {
+      "id": "C1",
+      "synthesis_claim": "SYNTHETIC EXAMPLE: partition a graph, colour each partition and repair boundary conflicts. This illustrates an experiment plan, not a measured improvement.",
+      "confidence": 0,
+      "papers": [],
+      "open_questions": ["Does partitioning overhead outweigh any reduction in search time?"],
+      "verification": {
+        "L3": {"verdict": "weak", "verdict_reason": "Demonstration only; no model review was performed."},
+        "recipe": {
+          "named_baselines": ["Fixed tabu-search implementation"],
+          "benchmark_dataset": "Predetermined graph set with separate training and holdout splits",
+          "metric_primary": "Valid colouring quality under the same evaluation budget",
+          "stop_rule": "Reject invalid colourings; compare under an identical budget.",
+          "likely_failure_mode": "Repairing partition boundaries costs more than partitioning saves."
+        }
+      }
+    }
+  ]
+}

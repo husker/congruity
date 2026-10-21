@@ -1,0 +1,32 @@
+{
+  "baselines": [
+    {
+      "id": "gzip",
+      "name": "gzip",
+      "level": "naive",
+      "command": "uv run --with brotli --with zstandard --with hpack python -m experiments.c1_short_string.bench",
+      "notes": "Generic fallback baseline; insufficient as the final bar."
+    },
+    {
+      "id": "brotli_dictionary",
+      "name": "Brotli with shared dictionary",
+      "level": "strong_reproducible",
+      "command": "uv run --with brotli --with zstandard --with hpack python -m experiments.c1_short_string.bench",
+      "notes": "Strong stateless dictionary baseline for short records."
+    },
+    {
+      "id": "zstd_dictionary",
+      "name": "Zstandard with trained dictionary",
+      "level": "strong_reproducible",
+      "command": "uv run --with brotli --with zstandard --with hpack python -m experiments.c1_short_string.bench",
+      "notes": "Strong stateless dictionary baseline."
+    },
+    {
+      "id": "hpack_stateful",
+      "name": "HPACK stateful HTTP header compression",
+      "level": "strong_reproducible",
+      "command": "uv run --with brotli --with zstandard --with hpack python -m experiments.c1_short_string.bench",
+      "notes": "Reproducible specialist HTTP baseline; only applies to HTTP-like header streams."
+    }
+  ]
+}

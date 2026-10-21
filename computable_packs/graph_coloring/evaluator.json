@@ -1,0 +1,21 @@
+{
+  "metric_primary": "colors_used",
+  "higher_is_better": false,
+  "validator": "conflict_free_recomputation_and_color_count",
+  "smoke_command": "uv run python -m experiments.graph_coloring.bench --instances gnp60_05,queen8 --seeds 1 --tabu-iters 5000",
+  "full_command": "uv run python -m experiments.graph_coloring.bench --seeds 3",
+  "pass_criteria": "A candidate must emit proper colorings (zero recomputed conflicts) and use strictly fewer colors than TabuCol on at least two instance families at the same iteration budget, with no family where it uses more.",
+  "candidate_command": "uv run python -m experiments.graph_coloring.bench --candidate {candidate} --json --seeds 3",
+  "search_command": "uv run python -m experiments.graph_coloring.bench --candidate {candidate} --json --instances gnp60_05,gnp100_01,queen8,planted90_k9 --seeds 2 --tabu-iters 20000 --methods tabucol",
+  "confirm_command": "uv run python -m experiments.graph_coloring.bench --candidate {candidate} --json --instances gnp70_05,gnp80_05,gnp125_05,queen10,planted80_k8 --seeds 3 --seed-base 101 --tabu-iters 100000",
+  "candidate_interface": "Write a Python module exposing exactly: solve(adj: list[set[int]], seed: int, iters: int) -> list[int]. `adj` is an undirected adjacency list over vertices 0..n-1 (symmetric, no self-loops); return one 0-based color per vertex. The harness re-validates every coloring by recomputing edge conflicts from your returned assignment \u2014 any conflict or exception fails the whole run. `iters` is the iteration budget; the home-field SOTA (descending-k TabuCol) gets the same budget. Importing experiments.graph_coloring.baselines (greedy, dsatur, tabucol, validate_coloring) to build on them is allowed and encouraged. Pure stdlib otherwise; deterministic in `seed`. ALSO expose solve_ablated(adj, seed, iters) -> list[int]: the identical method with your key novel mechanism DISABLED (falling back to the underlying baseline behavior). The harness runs it as an ablation to measure what your mechanism itself contributes; a candidate whose outputs are identical to the SOTA's on every trial is graded 'degenerate'.",
+  "candidate_signature": {
+    "function": "solve",
+    "args": [
+      "adj: list[set[int]]",
+      "seed: int",
+      "iters: int"
+    ],
+    "returns": "list[int]"
+  }
+}

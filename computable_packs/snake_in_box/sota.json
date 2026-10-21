@@ -1,0 +1,25 @@
+{
+  "bar_levels": [
+    {
+      "level": "naive",
+      "available": true,
+      "comparator": "greedy (randomized rollouts) in this pack",
+      "source": "",
+      "notes": ""
+    },
+    {
+      "level": "strong_reproducible",
+      "available": true,
+      "comparator": "stochastic_beam in this pack at equal budget",
+      "source": "in-repo experiments/snake_in_box/baselines.py",
+      "notes": "Fair reproducible bar. Beating it = Tier A."
+    },
+    {
+      "level": "record_cached",
+      "available": true,
+      "comparator": "published snake record table (proven optimal n<=8; best-known lower bounds n=9-13)",
+      "source": "records.json (OEIS A099155 / Ostergard-Pettersson 2015 / Wikipedia accessed 2026-07-02)",
+      "notes": "Transcribed from live-fetched sources with snapshots in record_sources/; pending human spot-check."
+    }
+  ]
+}

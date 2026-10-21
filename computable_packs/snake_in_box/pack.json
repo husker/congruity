@@ -1,0 +1,32 @@
+{
+  "id": "snake_in_box",
+  "display_name": "Snake-in-the-Box (longest induced path in Q_n)",
+  "description": "Find the longest induced (chord-free) open path in the n-dimensional hypercube. A classic combinatorial search problem with a published record table (proven optimal through n=7, best-known lower bounds beyond); used in error-correcting code design. Verification is an exact re-check of the returned vertex sequence.",
+  "problem_shape": {
+    "objective": "maximize snake length (edges) of an induced path in Q_n under a fixed candidate-extension evaluation budget",
+    "input_representation": "hypercube dimension n (vertices are integers 0..2^n-1; adjacency = Hamming distance 1), a seed, and an evaluation budget",
+    "output_representation": "a sequence of vertex integers forming the snake, starting from the canonical edge 0 -> 1",
+    "constraints": [
+      "consecutive vertices differ in exactly one bit",
+      "no two non-consecutive vertices are adjacent (chord-free / skin condition)",
+      "all vertices distinct and in range [0, 2^n)",
+      "search must respect the evaluation budget passed to solve()"
+    ],
+    "failure_modes": [
+      "returning a path with a chord (validator rejects; NaN poisons the score)",
+      "counting vertices instead of edges (length = edges = len(seq)-1)",
+      "ignoring the budget and brute-forcing (unfair vs baselines at equal budget)",
+      "hardcoding a known snake from the literature instead of searching (holdout uses unseen seeds; identical outputs across seeds are suspicious)"
+    ],
+    "verification_kind": "exact_oracle"
+  },
+  "recommended_problem_template": "Develop a novel search method for the snake-in-the-box problem (longest induced path in the hypercube Q_n) that beats restarted stochastic beam search at an equal evaluation budget on dimensions 6-8.",
+  "compose_query_hints": [
+    "snake-in-the-box longest induced path hypercube",
+    "coil-in-the-box circuit codes",
+    "nested rollout policy adaptation combinatorial search",
+    "Monte Carlo tree search combinatorial optimization",
+    "constraint propagation induced subgraph search",
+    "symmetry breaking exhaustive search hypercube"
+  ]
+}

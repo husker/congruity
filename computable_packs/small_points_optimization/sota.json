@@ -1,0 +1,25 @@
+{
+  "bar_levels": [
+    {
+      "level": "naive",
+      "available": true,
+      "comparator": "random restart or untuned local search",
+      "source": "experiments/heilbronn/bench.py",
+      "notes": "Only catches broken methods."
+    },
+    {
+      "level": "strong_reproducible",
+      "available": true,
+      "comparator": "best of tuned SA, basin hopping, CMA-ES, and differential evolution where wired",
+      "source": "experiments/heilbronn/",
+      "notes": "Primary AI-verifiable bar."
+    },
+    {
+      "level": "record_cached",
+      "available": true,
+      "comparator": "published reference objective value when the exact objective matches",
+      "source": "reference values cited in findings",
+      "notes": "Comparison-only unless exact record coordinates are local."
+    }
+  ]
+}

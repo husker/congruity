@@ -1,0 +1,39 @@
+[
+  {
+    "family": "embedding_compression",
+    "template": "Compress sentence embeddings to under {bits} bits per vector while preserving recall@10 >= {recall_target} against PQ at the same bit budget on {dataset}.",
+    "example_fill": {
+      "bits": 64,
+      "recall_target": 0.85,
+      "dataset": "BEIR-nfcorpus"
+    }
+  },
+  {
+    "family": "cache_replacement",
+    "template": "Design a cache eviction policy that beats {baseline} hit rate by at least {delta} on {workload_class} workloads at {capacity_fraction} cache size.",
+    "example_fill": {
+      "baseline": "SIEVE",
+      "delta": "0.02",
+      "workload_class": "scan-with-hot",
+      "capacity_fraction": "5%"
+    }
+  },
+  {
+    "family": "small_points_optimization",
+    "template": "Maximize the minimum-triangle area for {n} points in the unit square; beat published reference {published_area} within {wall_clock} seconds across {seeds} seeds.",
+    "example_fill": {
+      "n": 12,
+      "published_area": 0.03224,
+      "wall_clock": 600,
+      "seeds": 10
+    }
+  },
+  {
+    "family": "short_string_compression",
+    "template": "Compress {input_class} short strings (8-256 bytes) at a compression ratio better than {baseline_codec} on the held-out corpus.",
+    "example_fill": {
+      "input_class": "JSON API responses",
+      "baseline_codec": "Brotli + shared dictionary"
+    }
+  }
+]

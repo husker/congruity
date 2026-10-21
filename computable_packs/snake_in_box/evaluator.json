@@ -1,0 +1,22 @@
+{
+  "metric_primary": "snake_length",
+  "higher_is_better": true,
+  "validator": "validate_snake() re-derives validity and length from the raw vertex sequence: range, distinctness, unit-Hamming steps, chord-freeness. Solver claims are never trusted.",
+  "smoke_command": "uv run python -m experiments.snake_in_box.bench --smoke --json",
+  "full_command": "uv run python -m experiments.snake_in_box.bench --split holdout --json",
+  "pass_criteria": "mean snake length across dims x seeds beats stochastic_beam at equal budget on the holdout split (unseen seeds, adds Q8)",
+  "candidate_command": "uv run python -m experiments.snake_in_box.bench --split holdout --candidate {candidate} --json",
+  "candidate_interface": "Write a Python module exposing exactly: solve(n: int, seed: int, budget: int) -> list[int]. Return a vertex sequence (integers in [0, 2**n)) forming an induced chord-free path in the hypercube Q_n, starting [0, 1, ...]. Consecutive vertices must differ in exactly one bit; NO two non-consecutive vertices may be adjacent. Length is scored as edges (len-1). budget counts candidate-extension evaluations your search may perform (charge yourself 1 per successor you generate/score); respect it. Use only the Python standard library. The harness re-validates every sequence; any violation scores NaN.",
+  "candidate_signature": {
+    "function": "solve",
+    "args": [
+      "n: int",
+      "seed: int",
+      "budget: int"
+    ],
+    "returns": "list[int]"
+  },
+  "search_command": "uv run python -m experiments.snake_in_box.bench --split train --candidate {candidate} --json",
+  "confirm_command": "uv run python -m experiments.snake_in_box.bench --split holdout --candidate {candidate} --json",
+  "record_command": "uv run python -m experiments.snake_in_box.bench --dims {n} --seeds 3 --budget 5000000 --candidate {candidate} --json"
+}

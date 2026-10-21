@@ -1,0 +1,22 @@
+{
+  "n": 14,
+  "provenance": "RECONSTRUCTED 2026-07-06 by experiments/heilbronn/sym_polish.py (symmetry-constrained epigraph polish, structure rect(q3,x0,y1,c0), 800 multistarts in the 7-dim fundamental domain; independently found via rect(q3,x1,y0,c0)). NOT fetched from Beyleveld - no coordinate file is published. Matches the published record value 0.0243039796 (exact form: 2nd root of 320x^3+768x^2-60x+1, Mark Beyleveld Aug 2006) to 2e-11, i.e. this is (a numerically polished copy of) the record configuration, not a new record.",
+  "measured_min_area": 0.024303979621,
+  "symmetry": "full rectangle group: 3 quadruples + 1 vertical-axis pair; 8 of 14 points on the square boundary",
+  "points": [
+    [0.07762020607515938, 0.999999999999998],
+    [0.07762020607515938, 1.998401444325282e-15],
+    [0.9223797939248406, 0.999999999999998],
+    [0.9223797939248406, 1.998401444325282e-15],
+    [0.2923326509044791, 0.3213448977376522],
+    [0.2923326509044791, 0.6786551022623478],
+    [0.707667349095521, 0.3213448977376522],
+    [0.707667349095521, 0.6786551022623478],
+    [0.9999999999999989, 0.1868859173414295],
+    [0.9999999999999989, 0.8131140826585705],
+    [1.110223024625157e-15, 0.1868859173414295],
+    [1.110223024625157e-15, 0.8131140826585705],
+    [0.5, 0.8617220419005552],
+    [0.5, 0.1382779580994448]
+  ]
+}

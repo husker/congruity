@@ -1,0 +1,21 @@
+{
+  "metric_primary": "objective_value",
+  "higher_is_better": true,
+  "validator": "bounds_and_objective_recomputation",
+  "smoke_command": "uv run --with numpy --with scipy --with cma python -m experiments.heilbronn.bench --ns 8 --seeds 1 --n-steps 100 --n-starts 1 --methods SA-uniform,DE,CMA-ES",
+  "full_command": "uv run --with numpy --with scipy --with cma --with jax python -m experiments.heilbronn.bench",
+  "pass_criteria": "A candidate must pass coordinate validation and beat the best strong reproducible baseline by at least 5% mean objective value across fixed seeds.",
+  "candidate_command": "uv run --with numpy --with scipy --with cma python -m experiments.heilbronn.bench --ns 10,11,12 --seeds 2 --n-steps 20000 --n-starts 4 --methods SA-uniform,CMA-ES --candidate {candidate} --json",
+  "search_command": "uv run --with numpy --with scipy --with cma python -m experiments.heilbronn.bench --ns 13,15 --seeds 2 --seed0 1 --n-steps 10000 --n-starts 4 --methods CMA-ES --candidate {candidate} --json",
+  "confirm_command": "uv run --with numpy --with scipy --with cma python -m experiments.heilbronn.bench --ns 13,15 --seeds 1 --seed0 101 --n-steps 20000 --n-starts 4 --methods CMA-ES --candidate {candidate} --json",
+  "candidate_interface": "Write a Python module exposing exactly: solve(n: int, seed: int, budget: int) -> an (n, 2) array-like of point coordinates in the closed unit square [0,1]^2. The objective is the Heilbronn triangle problem: MAXIMIZE the area of the smallest triangle formed by any 3 of the n points. The harness recomputes the area from your returned coordinates (experiments.heilbronn.evaluator.min_triangle_area); wrong shape, out-of-bounds, or non-finite output poisons the trial. `budget` is the total function-evaluation budget; the comparison baseline (CMA-ES) gets the same budget. numpy and scipy are available; importing experiments.heilbronn.baselines (sa_uniform, sa_halton, scipy_basinhopping), baselines_cmaes, or the evaluator to build on them is allowed and encouraged. Deterministic in `seed`. ALSO expose solve_ablated(n, seed, budget) with your key mechanism disabled. RECORD TARGETS (best-known min-triangle areas, unit square; beating one with valid coordinates is a new mathematical record): n=11: 0.03703704 (1/27, Goldberg 1972 \u2014 unimproved for 54 years), n=13: 0.0270 (Karpov 2011), n=15: 0.0211 (Karpov 2011). Your best validated area per n is automatically compared against the cached record table.",
+  "candidate_signature": {
+    "function": "solve",
+    "args": [
+      "n: int",
+      "seed: int",
+      "budget: int"
+    ],
+    "returns": "array-like of shape (n, 2) in [0,1]^2"
+  }
+}

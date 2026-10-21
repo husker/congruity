@@ -1,0 +1,37 @@
+[
+  {
+    "id": "T11486",
+    "display_name": "Vector quantization for embeddings",
+    "year_min": 2018,
+    "works_count_hint": 800,
+    "note": "PQ / OPQ / RaBitQ / scalar quantization literature plus modern dense-retrieval compression"
+  },
+  {
+    "id": "T10024",
+    "display_name": "Cache replacement policies",
+    "year_min": 2015,
+    "works_count_hint": 1200,
+    "note": "LRU / ARC / SIEVE / S3FIFO family; both academic and industrial"
+  },
+  {
+    "id": "T10089",
+    "display_name": "Combinatorial optimization heuristics",
+    "year_min": 2010,
+    "works_count_hint": 2500,
+    "note": "SA / basin hopping / CMA-ES / DE applied to small-N geometric optimization"
+  },
+  {
+    "id": "T11202",
+    "display_name": "Short-string compression",
+    "year_min": 2015,
+    "works_count_hint": 400,
+    "note": "JSON / header / code compression; stateless dictionary codecs (Brotli/Zstd) vs stateful (HPACK)"
+  },
+  {
+    "id": "_NOTE_OPENALEX_IDS",
+    "display_name": "ENGINEER TODO: verify these OpenAlex topic IDs",
+    "year_min": 0,
+    "works_count_hint": 0,
+    "note": "The IDs above are stand-ins matching the experimental domains already in this project. Before using --apply, run a quick OpenAlex topic lookup to confirm or replace each ID."
+  }
+]

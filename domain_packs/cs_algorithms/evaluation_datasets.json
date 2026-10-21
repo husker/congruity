@@ -1,0 +1,21 @@
+{
+  "embedding_compression": [
+    "BEIR (heterogeneous IR benchmark; subsets like nfcorpus, fiqa)",
+    "MTEB retrieval subset",
+    "MS MARCO passage ranking"
+  ],
+  "cache_replacement": [
+    "SNIA block traces (public; large)",
+    "MSR Cambridge traces (public; smaller)",
+    "synthetic Zipf/loop/scan_with_hot generators in experiments/cache_replacement/traces.py"
+  ],
+  "small_points_optimization": [
+    "Erich Friedman's reference values at http://www2.stetson.edu/~efriedma/heilbronn/",
+    "Goldberg-style ILP optimal solutions for small n"
+  ],
+  "short_string_compression": [
+    "JSON API responses (collect from any public REST API)",
+    "HTTP request/response headers from MDN or curl logs",
+    "CodeSearchNet-style code snippets"
+  ]
+}

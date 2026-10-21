@@ -1,0 +1,19 @@
+{
+  "n": 12,
+  "provenance": "MATCHED 2026-07-06 by experiments/heilbronn/polish_hopper_sym.py (v2 lane, seed 1290, stint 10) - matches the published Comellas & Yebra 2001 best-known 0.0325988587 (exact form: real root of 64x^3+80x^2+28x-1) to 8.2e-12. Configuration is 180-degree rotationally symmetric (6 antipodal pairs).",
+  "measured_min_area": 0.0325988586918195,
+  "points": [
+    [0.884646177119315, 0.0],
+    [0.180551540264324, 0.5],
+    [3.99334732226554e-17, 0.115353822880684],
+    [0.5, 0.819448459735677],
+    [0.884646177119316, 1.0],
+    [0.5, 0.180551540264324],
+    [0.115353822880685, 1.0],
+    [1.0, 0.884646177119316],
+    [3.31661540977376e-16, 0.884646177119316],
+    [0.819448459735677, 0.5],
+    [1.0, 0.115353822880684],
+    [0.115353822880684, 0.0]
+  ]
+}

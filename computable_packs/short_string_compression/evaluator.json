@@ -1,0 +1,8 @@
+{
+  "metric_primary": "compression_ratio",
+  "higher_is_better": false,
+  "validator": "lossless_roundtrip",
+  "smoke_command": "uv run --with brotli --with zstandard --with hpack python -m experiments.c1_short_string.bench",
+  "full_command": "uv run --with brotli --with zstandard --with hpack python -m experiments.c1_short_string.bench",
+  "pass_criteria": "A candidate must round-trip every held-out record and beat the strongest applicable baseline by at least 2% relative compression ratio."
+}

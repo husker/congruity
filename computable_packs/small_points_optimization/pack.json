@@ -1,0 +1,32 @@
+{
+  "id": "small_points_optimization",
+  "display_name": "Small Points Optimization",
+  "description": "Geometric point-configuration optimization with deterministic validators and strong local optimization baselines.",
+  "problem_shape": {
+    "objective": "Maximize a recomputable geometric objective over finite point sets.",
+    "input_representation": "Problem size n, geometric domain, random seed, and objective parameters.",
+    "output_representation": "A finite list of point coordinates in the declared domain.",
+    "constraints": [
+      "All coordinates must lie inside the declared domain.",
+      "The score must be recomputed from emitted coordinates.",
+      "Invalid or non-finite coordinates fail validation before scoring."
+    ],
+    "failure_modes": [
+      "Candidate improves against weak simulated annealing but loses to tuned CMA-ES or differential evolution.",
+      "Candidate depends on a surrogate objective that does not improve the true geometric metric.",
+      "Candidate violates domain bounds or produces near-degenerate configurations."
+    ],
+    "verification_kind": "benchmark"
+  },
+  "recommended_problem_template": "Optimize a finite point configuration in a bounded geometric domain; beat tuned reproducible optimizers on the recomputed objective across fixed seeds.",
+  "compose_query_hints": [
+    "geometric optimization",
+    "point packing",
+    "energy minimization",
+    "molecular packing",
+    "mesh relaxation",
+    "active set repair",
+    "simulated annealing",
+    "CMA-ES"
+  ]
+}

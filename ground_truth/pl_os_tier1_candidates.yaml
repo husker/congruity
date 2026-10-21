@@ -1,0 +1,353 @@
+# Tier-1 candidate positives — PL theory ↔ OS / systems software
+#
+# Output of § 14 Step 1: hand-curated retrospective bridges between
+# programming-language theory and operating-system / systems software.
+# Each entry below claims: a known historical equivalence exists, with a
+# documented bridge paper, low pre-bridge cross-citation (per § 4 wedge
+# validation), and a procedural-equivalence sanity check supporting that
+# v0's differential-testing oracle (§ 10.4) is applicable.
+#
+# These are CANDIDATES, not Tier-1 commitments. Promote to Tier-1 only
+# after the bibliometric scoring in § 10.2 (beauty coefficient, surprise
+# language, independent-rediscovery check, model-probe contamination)
+# runs against each.
+#
+# Status of each: DRAFT — user review required.
+
+candidates:
+
+  - case_id: session_types_singularity_channels
+    bridge_paper:
+      title: "Sealing OS Processes to Improve Dependability and Safety"
+      authors: [Hunt, G. C., Larus, J. R., et al.]
+      year: 2007
+      venue: EuroSys
+      doi: "10.1145/1272996.1273032"
+      claim: |
+        Singularity introduces strongly-typed, contract-bound IPC channels
+        between software-isolated processes. The channel contracts are
+        recognizable as session-type specifications from the pi-calculus
+        literature, applied at the OS process-boundary level.
+    pl_side:
+      label: session types for structured communication
+      key_concepts: [session types, pi-calculus, channel contracts, communication protocols]
+      pre_bridge_seed_papers:
+        - { title: "Types for Dyadic Interaction", authors: [Honda, K.], year: 1993, venue: CONCUR }
+        - { title: "Language Primitives and Type Discipline for Structured Communication-Based Programming",
+            authors: [Honda, K., Vasconcelos, V. T., Kubo, M.], year: 1998, venue: ESOP }
+    os_side:
+      label: OS-level message passing and process isolation
+      key_concepts: [microkernel IPC, message passing, channel-based OS, software-isolated processes]
+      pre_bridge_seed_papers:
+        - { title: "L4 microkernel API papers", authors: [Liedtke, J.], year: 1995, venue: SOSP }
+        - { title: "Mach 3.0 IPC", year: 1990, venue: various }
+    expected_hypothesis: |
+      Singularity's channel contract language is operationally equivalent to a
+      restricted form of session types. A session-typed channel and a Singularity
+      channel contract for the same protocol should accept the same sequences of
+      messages and reject the same violations.
+    expected_mechanism_keywords:
+      [channel contract, dual session type, linear channel, protocol state machine]
+    procedural_equivalence_sanity: |
+      YES. Both sides specify a finite-state protocol over channel send/receive
+      operations. v0 oracle: given a session-type spec and a Singularity contract,
+      generate random message sequences and check both reject the same violations.
+    dormancy_estimate_years: 14  # 1993 → 2007
+    procedural_oracle_strategy: |
+      Implement a session-type checker (e.g. via existing library or port from a
+      session-types tutorial) and a Singularity-contract checker (mock with the
+      published contract syntax). Property-based test over generated message
+      sequences from a shared protocol grammar.
+
+  - case_id: information_flow_types_histar_labels
+    bridge_paper:
+      title: "Making Information Flow Explicit in HiStar"
+      authors: [Zeldovich, N., Boyd-Wickizer, S., Kohler, E., Mazières, D.]
+      year: 2006
+      venue: OSDI
+      claim: |
+        HiStar implements decentralized information-flow control at the OS-object
+        level. The label semantics map onto the lattice-of-labels and noninterference
+        framework from PL information-flow type-system literature.
+    pl_side:
+      label: information-flow security typing
+      key_concepts: [information-flow control, noninterference, security lattice, secure flow types]
+      pre_bridge_seed_papers:
+        - { title: "A Sound Type System for Secure Flow Analysis",
+            authors: [Volpano, D., Smith, G., Irvine, C.], year: 1996, venue: "J. Computer Security" }
+        - { title: "Language-Based Information-Flow Security",
+            authors: [Sabelfeld, A., Myers, A. C.], year: 2003, venue: "IEEE J. Selected Areas in Communications" }
+        - { title: "Decentralized Label Model", authors: [Myers, A. C., Liskov, B.], year: 1997 }
+    os_side:
+      label: OS access control and mandatory access control
+      key_concepts: [mandatory access control, multilevel security, OS labels, Bell-LaPadula]
+      pre_bridge_seed_papers:
+        - { title: "SELinux Type Enforcement", year: 2001, venue: "USENIX Sec" }
+        - { title: "Bell-LaPadula model", year: 1973, venue: "MITRE TR" }
+    expected_hypothesis: |
+      HiStar's label-comparison check on every OS object access is the runtime
+      analog of an information-flow type system's static check on every
+      assignment. Same lattice algebra, same noninterference guarantee, applied
+      at different granularity.
+    expected_mechanism_keywords:
+      [security label, taint propagation, declassification, lattice join, noninterference]
+    procedural_equivalence_sanity: |
+      YES. Both reduce to label-comparison algorithms over a lattice. v0 oracle:
+      given a small program and a small HiStar workload encoding the same data flow,
+      check that the PL type-checker and the HiStar reference monitor reject the
+      same set of policy violations.
+    dormancy_estimate_years: 10  # 1996 → 2006
+
+  - case_id: tal_pcc_typesafe_os
+    bridge_paper:
+      title: "SPIN — An Extensible Microkernel for Application-Specific Operating System Services"
+      authors: [Bershad, B. N., Savage, S., Pardyak, P., Sirer, E. G., Becker, D., Fiuczynski, M., Chambers, C., Eggers, S.]
+      year: 1995
+      venue: SOSP
+      claim: |
+        SPIN uses Modula-3's type system to enforce isolation between kernel
+        extensions, replacing hardware MMU-based isolation with language-level
+        type safety. This applies type-system theory to the OS isolation problem.
+        Strengthened by later TAL / PCC work that pushes the typing down to
+        machine code.
+    pl_side:
+      label: typed assembly language and proof-carrying code
+      key_concepts: [typed assembly, proof-carrying code, type safety, safety proof]
+      pre_bridge_seed_papers:
+        - { title: "Proof-Carrying Code", authors: [Necula, G. C.], year: 1997, venue: POPL }
+        - { title: "From System F to Typed Assembly Language",
+            authors: [Morrisett, G., Walker, D., Crary, K., Glew, N.], year: 1998, venue: POPL }
+    os_side:
+      label: kernel isolation and extension safety
+      key_concepts: [kernel extension safety, sandboxing, software fault isolation, address-space isolation]
+      pre_bridge_seed_papers:
+        - { title: "Software Fault Isolation", authors: [Wahbe, R., Lucco, S., Anderson, T. E., Graham, S. L.], year: 1993, venue: SOSP }
+    expected_hypothesis: |
+      Type-checking a kernel extension at load time enforces the same safety
+      property as hardware MMU isolation does at run time: a typed extension
+      cannot violate the kernel's invariants. Type safety = process isolation
+      with different mechanism.
+    expected_mechanism_keywords:
+      [type soundness, sandbox guarantee, memory safety, control-flow integrity]
+    procedural_equivalence_sanity: |
+      PARTIAL. The equivalence claim is at the safety-property level (both
+      enforce noninterference between kernel and extension), but the
+      mechanisms differ — type-checking vs. MMU traps. v0 oracle: generate
+      adversarial extension programs and check both mechanisms reject the
+      same memory-violating cases. May need to scope this case carefully.
+    dormancy_estimate_years: 2  # 1993 → 1995 — possibly too short for clean Tier 1
+
+  - case_id: region_inference_kernel_regions
+    bridge_paper:
+      title: "Region-Based Memory Management in Cyclone"
+      authors: [Grossman, D., Morrisett, G., Jim, T., Hicks, M., Wang, Y., Cheney, J.]
+      year: 2002
+      venue: PLDI
+      claim: |
+        Cyclone uses region inference (from Tofte/Talpin PL theory) to provide
+        safe, manual-control memory management without GC — directly motivated
+        by systems contexts (kernels, embedded) where GC is unacceptable.
+    pl_side:
+      label: region-based memory management theory
+      key_concepts: [region inference, lexically-scoped region, region polymorphism, effect system]
+      pre_bridge_seed_papers:
+        - { title: "Region-Based Memory Management",
+            authors: [Tofte, M., Talpin, J.-P.], year: 1997, venue: "Information and Computation" }
+    os_side:
+      label: kernel allocators and region/arena allocators
+      key_concepts: [arena allocator, slab allocator, pool allocator, bump allocator]
+      pre_bridge_seed_papers:
+        - { title: "The Slab Allocator", authors: [Bonwick, J.], year: 1994, venue: "USENIX ATC" }
+        - { title: "Apache pools / mempool work", year: "various" }
+    expected_hypothesis: |
+      Region inference and arena/pool allocators implement the same memory-management
+      pattern: scope-bound allocation with bulk deallocation. The PL type system
+      proves the safety property that the systems pattern provides by convention.
+    expected_mechanism_keywords:
+      [region lifetime, bulk free, allocation arena, scope-bound memory]
+    procedural_equivalence_sanity: |
+      YES. Both are allocators with bulk-free. v0 oracle: implement Cyclone's
+      region allocator and a Bonwick-style arena allocator. Run random
+      allocation/deallocation workloads. Check observable behavior (memory
+      usage curve, freed-then-reused addresses) matches under semantic adapter.
+    dormancy_estimate_years: 5  # 1997 PL → 2002 bridge; ~10y in OS literature
+
+  - case_id: continuations_userland_async
+    bridge_paper:
+      title: "Capriccio — Scalable Threads for Internet Services"
+      authors: [von Behren, R., Condit, J., Zhou, F., Necula, G. C., Brewer, E.]
+      year: 2003
+      venue: SOSP
+      claim: |
+        Capriccio uses CPS-style compiler transformations (PL technique) to
+        implement extremely lightweight user-level threads. The transformation
+        is the continuation-passing-style transform from PL theory applied to
+        thread runtime design.
+    pl_side:
+      label: continuations and CPS transforms
+      key_concepts: [continuation-passing style, first-class continuations, CPS transform, delimited continuations]
+      pre_bridge_seed_papers:
+        - { title: "Definitional Interpreters for Higher-Order Programming Languages",
+            authors: [Reynolds, J. C.], year: 1972, venue: "ACM Annual Conf" }
+        - { title: "The Calculi of Lambda-v-CS Conversion",
+            authors: [Felleisen, M.], year: 1987, venue: PhD thesis }
+    os_side:
+      label: user-level threads and coroutines
+      key_concepts: [user-level thread, fiber, coroutine, M:N threading, async runtime]
+      pre_bridge_seed_papers:
+        - { title: "Scheduler Activations", authors: [Anderson, T. E., Bershad, B. N., Lazowska, E. D., Levy, H. M.], year: 1992, venue: SOSP }
+        - { title: "POSIX Threads spec", year: 1995 }
+    expected_hypothesis: |
+      A CPS-transformed program is operationally equivalent to a coroutine-based
+      thread runtime: each suspension point is a captured continuation; resuming
+      a thread is invoking that continuation. The two solve the same problem of
+      preserving call-stack state across blocking operations.
+    expected_mechanism_keywords:
+      [continuation capture, stack switching, suspend point, await]
+    procedural_equivalence_sanity: |
+      YES. Both are observable as a scheduling discipline over blocking operations.
+      v0 oracle: implement a small CPS interpreter and a coroutine library; run
+      identical I/O workloads; check yield/resume sequences match.
+    dormancy_estimate_years: 16  # 1987 CPS → 2003 Capriccio; ~10y in OS
+
+  - case_id: gc_algorithms_kernel_rcu
+    bridge_paper:
+      title: "Performance of memory reclamation for lockless synchronization"
+      authors: [Hart, T. E., McKenney, P. E., Brown, A. D., Walpole, J.]
+      year: 2007
+      venue: "J. Parallel and Distributed Computing"
+      claim: |
+        Compares RCU, epoch-based reclamation, hazard pointers, and reference
+        counting as solutions to the safe-memory-reclamation problem for
+        lock-free data structures — applying GC-theory concepts (read barriers,
+        epoch-based collection) to OS-kernel concurrency primitives.
+    pl_side:
+      label: garbage collection algorithms
+      key_concepts: [mark-sweep, reference counting, generational GC, read barrier, write barrier]
+      pre_bridge_seed_papers:
+        - { title: "A LISP garbage collector for virtual memory computer systems",
+            authors: [Cheney, C. J.], year: 1970, venue: "CACM" }
+        - { title: "List Processing in Real Time on a Serial Computer",
+            authors: [Baker, H. G.], year: 1978, venue: CACM }
+    os_side:
+      label: kernel safe memory reclamation
+      key_concepts: [RCU, epoch-based reclamation, hazard pointer, lock-free reclamation]
+      pre_bridge_seed_papers:
+        - { title: "Read-Copy Update", authors: [McKenney, P. E., Slingwine, J. D.], year: 1998, venue: "PDCS" }
+        - { title: "Practical lock-freedom", authors: [Fraser, K.], year: 2004, venue: "PhD thesis" }
+    expected_hypothesis: |
+      Epoch-based reclamation in lock-free data structures is operationally
+      equivalent to a generational/region-based garbage collector restricted
+      to lock-free-data-structure objects: both defer reclamation until "no
+      reader can observe" the object, by different mechanisms (epochs vs.
+      generation barriers).
+    expected_mechanism_keywords:
+      [reclamation barrier, deferred free, reader epoch, generation crossing]
+    procedural_equivalence_sanity: |
+      YES. Both are reclamation algorithms with observable timing of frees.
+      v0 oracle: implement a small generational GC and an epoch-based
+      reclamation scheme over a shared list/queue ADT; run identical
+      workloads; check live-set membership matches.
+    dormancy_estimate_years: 28  # 1978 Baker → 2007 unified-comparison
+
+  - case_id: linear_types_rust_kernel_safety
+    bridge_paper:
+      title: "Rust for Linux — RFC and follow-on work"
+      authors: [Ojeda, M., et al.]
+      year: 2021
+      venue: "LWN / kernel mailing list"
+      claim: |
+        Rust's borrow-checker (linear-types-derived) is used in Linux kernel
+        modules to prevent the use-after-free and aliasing bugs that have
+        historically been kernel CVE sources, formally bridging linear-type
+        theory and OS-kernel safety practice.
+    pl_side:
+      label: linear and affine types
+      key_concepts: [linear types, affine types, ownership, borrow, lifetime]
+      pre_bridge_seed_papers:
+        - { title: "Linear Types can Change the World!", authors: [Wadler, P.], year: 1990, venue: "Programming Concepts and Methods" }
+        - { title: "Vault — Adopting Linear Types in a Procedural Setting",
+            authors: [Fähndrich, M., DeLine, R.], year: 2002, venue: PLDI }
+    os_side:
+      label: kernel resource safety
+      key_concepts: [use-after-free, kernel memory safety, RAII, kernel resource management]
+      pre_bridge_seed_papers:
+        - { title: "Linux kernel CVE corpus on use-after-free", year: "various" }
+        - { title: "RAII / smart pointers in C++ kernel-adjacent work", year: "various" }
+    expected_hypothesis: |
+      Rust's affine-type ownership system is the operational implementation of
+      Wadler-1990 linear types specialized for memory resources. Type-checking
+      a Rust kernel module statically rejects the same use-after-free patterns
+      that a hand-written C kernel module gets wrong at runtime.
+    expected_mechanism_keywords:
+      [ownership transfer, borrow check, lifetime annotation, move semantics]
+    procedural_equivalence_sanity: |
+      YES. Both are type-checking / runtime-check algorithms over resource
+      handles. v0 oracle: take a corpus of known kernel use-after-free CVEs;
+      reproduce each in equivalent Rust; show the borrow-checker rejects each
+      one statically. Test reverse direction: Rust kernel modules that compile
+      should not produce equivalent UAF patterns in their compiled output.
+    dormancy_estimate_years: 31  # 1990 Wadler → 2021 Rust-for-Linux
+
+  - case_id: capability_theory_capsicum_cheri
+    bridge_paper:
+      title: "Capsicum — Practical Capabilities for UNIX"
+      authors: [Watson, R. N. M., Anderson, J., Laurie, B., Kennaway, K.]
+      year: 2010
+      venue: "USENIX Security"
+      claim: |
+        Capsicum implements POLA (principle of least authority) and capability
+        confinement from PL object-capability theory at the OS-process-and-FD
+        level, providing UNIX programs with capability-mode sandboxing.
+    pl_side:
+      label: object-capability security and confinement theory
+      key_concepts: [object capability, POLA, capability-based security, confinement]
+      pre_bridge_seed_papers:
+        - { title: "Robust Composition — Towards a Unified Approach to Access Control and Concurrency Control",
+            authors: [Miller, M. S.], year: 2006, venue: "PhD thesis" }
+        - { title: "Capability Myths Demolished",
+            authors: [Miller, M. S., Yee, K.-P., Shapiro, J.], year: 2003 }
+    os_side:
+      label: capability-based operating systems
+      key_concepts: [capability OS, KeyKOS, EROS, file descriptor as capability]
+      pre_bridge_seed_papers:
+        - { title: "KeyKOS Nanokernel Architecture",
+            authors: [Bomberger, A. C., Frantz, A. P., Frantz, W. S., Hardy, A. C., Hardy, N., Landau, C. R., Shapiro, J. S.], year: 1992, venue: "USENIX Microkernels Workshop" }
+        - { title: "EROS — A Fast Capability System",
+            authors: [Shapiro, J. S., Smith, J. M., Farber, D. J.], year: 1999, venue: SOSP }
+    expected_hypothesis: |
+      Capsicum's capability_mode + file-descriptor-as-capability check is the
+      operational instantiation of object-capability theory's "no ambient
+      authority" property. A program in Capsicum's capability_mode can do
+      exactly what its capability set permits, as a static-typing-of-fds
+      analog of PL object-capability discipline.
+    expected_mechanism_keywords:
+      [no ambient authority, capability descriptor, confinement, FD inheritance]
+    procedural_equivalence_sanity: |
+      PARTIAL. The static analysis side (PL object-capability) is partly
+      structural; the runtime check side (Capsicum) is procedural. v0 oracle:
+      construct synthetic capability-leakage attacks; check both PL static
+      analysis and Capsicum runtime reject the same set. May need to scope to
+      the procedural slice (which capabilities does a program access at run
+      time vs. which were granted) to fit v0's oracle shape.
+    dormancy_estimate_years: 18  # 1992 KeyKOS → 2010 Capsicum (post-Miller 2003-2006)
+
+
+# Summary stats for user review
+summary:
+  total_candidates: 8
+  procedural_equivalence_yes: 5  # session_types, info_flow, region, continuations, gc_rcu
+  procedural_equivalence_partial: 3  # tal_pcc, linear_rust, capability  (see notes)
+  median_dormancy_years: 14
+  date_range_bridge_papers: "1995–2021"
+
+# Next gates (per § 14):
+# Step 2: hand-run the candidate generation step on TWO of these with redacted-vocabulary
+#   ablation. Recommended pairs to try first: session_types_singularity (cleanest), and
+#   region_inference_kernel_regions (most procedural, well-documented).
+# Step 3: hand-run the differential oracle on ONE. Recommended: region_inference_kernel_regions
+#   (reference implementations exist on both sides — Cyclone and Bonwick's slab allocator).
+# Step 4: hand-run the interlock check (mechanical dormancy vs intuitive) on ALL eight,
+#   verify mechanical scores roughly match the dormancy estimates above.
+# Step 5: One outreach email — Neil Smalheiser (LBD), Jonathan Wren (LBD), or someone in
+#   the PL-as-OS-bridge community (Andrew Myers? Greg Morrisett? David Walker?).

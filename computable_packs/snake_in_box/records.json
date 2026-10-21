@@ -1,0 +1,108 @@
+{
+  "domain": "snake_in_box",
+  "metric": "snake_length",
+  "higher_is_better": true,
+  "tolerance": 1e-09,
+  "records": [
+    {
+      "id": "snake_q5",
+      "params": {
+        "n": 5
+      },
+      "value": 13.0,
+      "status": "proven_optimal",
+      "found_by": "classical exhaustive results",
+      "source": "https://oeis.org/A099155",
+      "precision_note": "length in edges; integer metric"
+    },
+    {
+      "id": "snake_q6",
+      "params": {
+        "n": 6
+      },
+      "value": 26.0,
+      "status": "proven_optimal",
+      "found_by": "classical exhaustive results",
+      "source": "https://oeis.org/A099155",
+      "precision_note": "length in edges; integer metric"
+    },
+    {
+      "id": "snake_q7",
+      "params": {
+        "n": 7
+      },
+      "value": 50.0,
+      "status": "proven_optimal",
+      "found_by": "exhaustive search (n=7,8: Ostergard & Pettersson 2015)",
+      "source": "Ostergard & Pettersson, Exhaustive Search for Snake-in-the-Box Codes, Graphs and Combinatorics 31:1019-1028 (2015), doi:10.1007/s00373-014-1423-3 (proves a(7)=50, a(8)=98); via https://oeis.org/A099155",
+      "precision_note": "length in edges; integer metric"
+    },
+    {
+      "id": "snake_q8",
+      "params": {
+        "n": 8
+      },
+      "value": 98.0,
+      "status": "proven_optimal",
+      "found_by": "exhaustive search (n=7,8: Ostergard & Pettersson 2015)",
+      "source": "Ostergard & Pettersson, Exhaustive Search for Snake-in-the-Box Codes, Graphs and Combinatorics 31:1019-1028 (2015), doi:10.1007/s00373-014-1423-3 (proves a(7)=50, a(8)=98); via https://oeis.org/A099155",
+      "precision_note": "length in edges; integer metric"
+    },
+    {
+      "id": "snake_q9",
+      "params": {
+        "n": 9
+      },
+      "value": 190.0,
+      "status": "best_known",
+      "found_by": "",
+      "source": "https://en.wikipedia.org/wiki/Snake-in-the-box (accessed 2026-07-02): 'the best lengths found so far for dimensions nine through thirteen are 190, 376, 736, 1461, 2892'; via OEIS A099155 references",
+      "precision_note": "lower bound (record to beat); length in edges"
+    },
+    {
+      "id": "snake_q10",
+      "params": {
+        "n": 10
+      },
+      "value": 376.0,
+      "status": "best_known",
+      "found_by": "",
+      "source": "https://en.wikipedia.org/wiki/Snake-in-the-box (accessed 2026-07-02): 'the best lengths found so far for dimensions nine through thirteen are 190, 376, 736, 1461, 2892'; via OEIS A099155 references",
+      "precision_note": "lower bound (record to beat); length in edges"
+    },
+    {
+      "id": "snake_q11",
+      "params": {
+        "n": 11
+      },
+      "value": 737.0,
+      "status": "best_known",
+      "found_by": "",
+      "source": "https://minortriad.com/snake/ (accessed 2026-07-04, live record table): snake column d11=737 d12=1465 d13=2898; supersedes the Wikipedia/OEIS values 736/1461/2892 which lag the site",
+      "precision_note": "lower bound (record to beat); length in edges"
+    },
+    {
+      "id": "snake_q12",
+      "params": {
+        "n": 12
+      },
+      "value": 1465.0,
+      "status": "best_known",
+      "found_by": "",
+      "source": "https://minortriad.com/snake/ (accessed 2026-07-04, live record table): snake column d11=737 d12=1465 d13=2898; supersedes the Wikipedia/OEIS values 736/1461/2892 which lag the site",
+      "precision_note": "lower bound (record to beat); length in edges"
+    },
+    {
+      "id": "snake_q13",
+      "params": {
+        "n": 13
+      },
+      "value": 2898.0,
+      "status": "best_known",
+      "found_by": "",
+      "source": "https://minortriad.com/snake/ (accessed 2026-07-04, live record table): snake column d11=737 d12=1465 d13=2898; supersedes the Wikipedia/OEIS values 736/1461/2892 which lag the site",
+      "precision_note": "lower bound (record to beat); length in edges"
+    }
+  ],
+  "notes": "Transcribed 2026-07-02 from live-fetched sources (see record_sources/ snapshots) at James's direction; values were NOT taken from model memory. Dims 1-8 are proven optimal (OEIS A099155; n=7,8 settled by Ostergard & Pettersson 2015) \u2014 a candidate exceeding these indicates a metric bug, not a record. Dims 9-13 are best-known lower bounds; exceeding one with a validator-checked certificate IS a new record. PENDING HUMAN SPOT-CHECK by James against the cited sources."
+}

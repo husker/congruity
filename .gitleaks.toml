@@ -1,0 +1,14 @@
+title = "Congruity publication scan"
+
+[extend]
+useDefault = true
+
+[[rules]]
+id = "generic-api-key"
+
+[[rules.allowlists]]
+description = "Reviewed research prose naming arithmetic/FSE coding, not a credential"
+condition = "AND"
+paths = ['''(^|/)findings/compose-20260520-053938\.md$''']
+regexTarget = "match"
+regexes = ['''^tokenization, arithmetic/FSE\s*$''']

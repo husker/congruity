@@ -1,0 +1,46 @@
+{
+  "baselines": [
+    {
+      "id": "random_restart",
+      "name": "Random restart search",
+      "level": "naive",
+      "command": "uv run python -m experiments.heilbronn.bench",
+      "notes": "Sanity baseline only."
+    },
+    {
+      "id": "simulated_annealing",
+      "name": "Tuned simulated annealing",
+      "level": "strong_reproducible",
+      "command": "uv run --with numpy --with scipy python -m experiments.heilbronn.bench",
+      "notes": "Standard local-search baseline used in prior verification."
+    },
+    {
+      "id": "basin_hopping",
+      "name": "SciPy basin hopping",
+      "level": "strong_reproducible",
+      "command": "uv run --with numpy --with scipy python -m experiments.heilbronn.bench",
+      "notes": "Useful but must be tuned; defaults are weak."
+    },
+    {
+      "id": "differential_evolution",
+      "name": "SciPy differential evolution",
+      "level": "strong_reproducible",
+      "command": "uv run --with numpy --with scipy --with cma python -m experiments.heilbronn.bench --methods DE",
+      "notes": "Standard derivative-free optimizer wired by the Heilbronn benchmark as method DE."
+    },
+    {
+      "id": "cma_es",
+      "name": "CMA-ES",
+      "level": "strong_reproducible",
+      "command": "uv run --with cma --with numpy python -m experiments.heilbronn.bench",
+      "notes": "Strong optimizer bar for smooth or relaxed formulations."
+    },
+    {
+      "id": "published_reference",
+      "name": "Published reference values",
+      "level": "record_cached",
+      "command": "",
+      "notes": "Comparison-only unless coordinates and exact objective definitions are local."
+    }
+  ]
+}

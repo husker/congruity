@@ -1,0 +1,8 @@
+{
+  "metric_primary": "hit_rate",
+  "higher_is_better": true,
+  "validator": "capacity_and_no_future_leakage",
+  "smoke_command": "uv run python -m experiments.cache_replacement.bench",
+  "full_command": "uv run python -m experiments.cache_replacement.bench",
+  "pass_criteria": "A candidate must obey capacity, avoid future leakage, and beat the best strong reproducible baseline by at least 1 percentage point hit rate on non-Zipf stress traces."
+}

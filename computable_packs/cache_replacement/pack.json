@@ -1,0 +1,31 @@
+{
+  "id": "cache_replacement",
+  "display_name": "Cache Replacement",
+  "description": "Online cache eviction policies verified by deterministic trace replay, capacity checks, and strong cache-policy baselines.",
+  "problem_shape": {
+    "objective": "Maximize hit rate or minimize miss ratio under a fixed cache capacity.",
+    "input_representation": "A deterministic access trace and cache capacity.",
+    "output_representation": "Eviction decisions made online during trace replay.",
+    "constraints": [
+      "Cache capacity must never be exceeded.",
+      "Non-oracle policies cannot use future accesses.",
+      "Every policy must replay the same trace with the same capacity."
+    ],
+    "failure_modes": [
+      "Future leakage disguised as prediction.",
+      "Synthetic Zipf-only evaluation that hides scan or loop failures.",
+      "Prefetching mechanisms misapplied as eviction policies."
+    ],
+    "verification_kind": "benchmark"
+  },
+  "recommended_problem_template": "Design an online cache eviction policy that beats SIEVE, ARC, and S3FIFO hit rate on scan, loop, and skewed traces at fixed cache capacities.",
+  "compose_query_hints": [
+    "cache replacement",
+    "online scheduling",
+    "eviction policy",
+    "prefetching",
+    "time to next use",
+    "streaming sketches",
+    "bandit allocation"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "datasets": [
+    {
+      "id": "seeded_instance_suite",
+      "name": "Seeded instance suite (G(n,p), queen, planted k-partite)",
+      "kind": "generated",
+      "availability": "always",
+      "command": "uv run python -m experiments.graph_coloring.bench",
+      "notes": "Deterministic generators in experiments/graph_coloring/instances.py; same name always yields the same graph. Planted instances have a known upper bound on the chromatic number by construction."
+    },
+    {
+      "id": "dimacs_instances",
+      "name": "DIMACS COLOR benchmark files",
+      "kind": "external_optional",
+      "availability": "optional",
+      "command": "",
+      "notes": "Classic DSJC/queen/flat instances when downloaded locally; published best-known color counts only apply to these exact files."
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "datasets": [
+    {
+      "id": "real_http_headers",
+      "name": "Real HTTP headers cache",
+      "kind": "local_json",
+      "availability": "local_if_present",
+      "command": "test -f data/real_http_headers.json",
+      "notes": "Collected by experiments/c1_short_string/fetch_real_headers.py."
+    },
+    {
+      "id": "synthetic_templated_records",
+      "name": "Synthetic templated short records",
+      "kind": "generated",
+      "availability": "always",
+      "command": "uv run python -m experiments.c1_short_string.bench",
+      "notes": "Used for smoke tests when real corpora are unavailable."
+    },
+    {
+      "id": "json_snippets",
+      "name": "Short JSON snippets",
+      "kind": "generated_or_collected",
+      "availability": "optional",
+      "command": "",
+      "notes": "Useful off-HTTP generalization set."
+    }
+  ]
+}

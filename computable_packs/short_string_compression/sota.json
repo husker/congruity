@@ -1,0 +1,25 @@
+{
+  "bar_levels": [
+    {
+      "level": "naive",
+      "available": true,
+      "comparator": "gzip ratio on the same held-out records",
+      "source": "stdlib gzip",
+      "notes": "Only a sanity check."
+    },
+    {
+      "level": "strong_reproducible",
+      "available": true,
+      "comparator": "best of Brotli dictionary, Zstandard dictionary, and HPACK where applicable on the same split",
+      "source": "experiments/c1_short_string/bench.py plus hpack package",
+      "notes": "Primary local bar; HPACK is the specialist comparison for HTTP-like streams."
+    },
+    {
+      "level": "record_cached",
+      "available": false,
+      "comparator": "cached published short-string compression leaderboard",
+      "source": "",
+      "notes": "No cached published record is currently tracked in the repo."
+    }
+  ]
+}

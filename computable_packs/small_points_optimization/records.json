@@ -1,0 +1,117 @@
+{
+  "domain": "Heilbronn triangle problem, unit square (side 1)",
+  "metric": "min_triangle_area",
+  "higher_is_better": true,
+  "tolerance": 1e-09,
+  "records": [
+    {
+      "id": "heilbronn_square_n5",
+      "params": {"n": 5},
+      "value": 0.1924500897,
+      "status": "proven_optimal",
+      "exact_form": "sqrt(3)/9",
+      "found_by": "classical; proven Yang, Zhang & Zeng 1991/92",
+      "source": "https://erich-friedman.github.io/packing/heilbronn/"
+    },
+    {
+      "id": "heilbronn_square_n6",
+      "params": {"n": 6},
+      "value": 0.125,
+      "status": "proven_optimal",
+      "exact_form": "1/8",
+      "found_by": "classical; proven Dress, Yang & Zeng 1995",
+      "source": "https://erich-friedman.github.io/packing/heilbronn/"
+    },
+    {
+      "id": "heilbronn_square_n7",
+      "params": {"n": 7},
+      "value": 0.083859009,
+      "status": "proven_optimal",
+      "exact_form": "2nd root of 152x^3+12x^2-14x+1",
+      "found_by": "Comellas & Yebra 2001 (EJC 9 #R6); proven Chen & Chen 2011",
+      "source": "https://mathworld.wolfram.com/HeilbronnTriangleProblem.html"
+    },
+    {
+      "id": "heilbronn_square_n8",
+      "params": {"n": 8},
+      "value": 0.0723764243,
+      "status": "proven_optimal",
+      "exact_form": "(sqrt(13)-1)/36",
+      "found_by": "Comellas & Yebra; proven Dehbi & Zeng 2022 (JSSC 35)",
+      "source": "https://erich-friedman.github.io/packing/heilbronn/"
+    },
+    {
+      "id": "heilbronn_square_n9",
+      "params": {"n": 9},
+      "value": 0.0548759992,
+      "status": "proven_optimal",
+      "exact_form": "(9*sqrt(65)-55)/320",
+      "found_by": "Comellas & Yebra; proven Sudermann-Merx 2026 (arXiv:2603.11107)",
+      "source": "https://arxiv.org/abs/2603.11107"
+    },
+    {
+      "id": "heilbronn_square_n10",
+      "params": {"n": 10},
+      "value": 0.0465374196,
+      "status": "best_known",
+      "exact_form": "1st root of 3456x^3-1764x^2+268x-9",
+      "found_by": "Comellas & Yebra 2001",
+      "source": "https://mathworld.wolfram.com/HeilbronnTriangleProblem.html"
+    },
+    {
+      "id": "heilbronn_square_n11",
+      "params": {"n": 11},
+      "value": 0.037037037,
+      "status": "best_known",
+      "exact_form": "1/27",
+      "found_by": "Goldberg 1972 (Math. Mag. 45)",
+      "source": "https://erich-friedman.github.io/packing/heilbronn/"
+    },
+    {
+      "id": "heilbronn_square_n12",
+      "params": {"n": 12},
+      "value": 0.0325988587,
+      "status": "best_known",
+      "exact_form": "real root of 64x^3+80x^2+28x-1",
+      "found_by": "Comellas & Yebra 2001",
+      "source": "https://mathworld.wolfram.com/HeilbronnTriangleProblem.html"
+    },
+    {
+      "id": "heilbronn_square_n13",
+      "params": {"n": 13},
+      "value": 0.027019916669111,
+      "status": "best_known",
+      "found_by": "Peter Karpov, Aug 2011",
+      "source": "http://inversed.ru/Ascension.htm",
+      "precision_note": "Bar = the STATIONARY value of Karpov's published coordinates under exact_polish (2026-07-06). His file (inversed.ru/Ascension/Heilbronn_S13.txt) scores 0.027019272239114 as published (header 2.70192722391139E-2, matches our evaluator to 7e-18; tables show the truncation 0.0270+); one epigraph polish refines it in-basin to 0.027019916669111 (+6.4e-7). A claim below that is not defensible (re-polishing his file beats it), so the comparator uses the polished value: exceeding it means a genuinely deeper basin or new configuration."
+    },
+    {
+      "id": "heilbronn_square_n14",
+      "params": {"n": 14},
+      "value": 0.0243039796,
+      "status": "best_known",
+      "exact_form": "2nd root of 320x^3+768x^2-60x+1",
+      "found_by": "Mark Beyleveld, Aug 2006",
+      "source": "https://mathworld.wolfram.com/HeilbronnTriangleProblem.html"
+    },
+    {
+      "id": "heilbronn_square_n15",
+      "params": {"n": 15},
+      "value": 0.021106168589172,
+      "status": "best_known",
+      "found_by": "Peter Karpov, Aug 2011",
+      "source": "http://inversed.ru/Ascension.htm",
+      "precision_note": "Bar = the STATIONARY value of Karpov's published coordinates under exact_polish (2026-07-06). His file (inversed.ru/Ascension/Heilbronn_S15.txt) scores 0.021105681878415 as published (header 2.11056818784151E-2, matches our evaluator to 3e-16; tables show the truncation 0.0211+); one epigraph polish refines it in-basin to 0.021106168589172 (+4.9e-7). A claim below that is not defensible (re-polishing his file beats it), so the comparator uses the polished value: exceeding it means a genuinely deeper basin or new configuration."
+    },
+    {
+      "id": "heilbronn_square_n16",
+      "params": {"n": 16},
+      "value": 0.0205278592,
+      "status": "best_known",
+      "exact_form": "7/341",
+      "found_by": "Mark Beyleveld, Aug 2006",
+      "source": "https://erich-friedman.github.io/packing/heilbronn/"
+    }
+  ],
+  "notes": "Value = raw area of the smallest of the C(n,3) triangles, points in the closed unit square (side 1), maximized over placements — same convention as experiments/heilbronn/evaluator.py min_triangle_area. Compiled 2026-06-11 from Erich Friedman's Heilbronn page (current, reflects the 2026 n=9 proof), MathWorld, arXiv:2603.11107, and inversed.ru. WARNING: the informal PUBLISHED_REFERENCE table inside experiments/heilbronn/bench.py is stale (it lists n=7 as 1/12 'proven optimal', beaten in 2001) — trust this file, not that table. n=10-16 best-knowns date to 2001-2011, so they are realistic targets for search."
+}

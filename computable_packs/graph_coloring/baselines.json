@@ -1,0 +1,25 @@
+{
+  "baselines": [
+    {
+      "id": "greedy_random",
+      "name": "Greedy over random vertex orders",
+      "level": "naive",
+      "command": "uv run python -m experiments.graph_coloring.bench --methods greedy",
+      "notes": "Best of 50 random orders. Sanity baseline only."
+    },
+    {
+      "id": "dsatur",
+      "name": "DSATUR",
+      "level": "naive",
+      "command": "uv run python -m experiments.graph_coloring.bench --methods dsatur",
+      "notes": "Classic constructive heuristic; the starting point for the strong bar, not the bar itself."
+    },
+    {
+      "id": "tabucol",
+      "name": "Descending-k TabuCol seeded from DSATUR",
+      "level": "strong_reproducible",
+      "command": "uv run python -m experiments.graph_coloring.bench --methods tabucol",
+      "notes": "Hertz & de Werra TabuCol with aspiration and dynamic tenure; the home-field bar at a fixed iteration budget per k."
+    }
+  ]
+}

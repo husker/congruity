@@ -1,0 +1,12 @@
+{
+  "datasets": [
+    {
+      "id": "hypercubes",
+      "name": "Hypercube dimensions Q5-Q8",
+      "kind": "synthetic",
+      "availability": "generated in-repo (dimension + seed fully determine an instance)",
+      "command": "",
+      "notes": "train = dims (6,7), seeds 1-3, budget 400k; holdout = dims (6,7,8), seeds 101-103, budget 1.2M. Disjoint seeds and budgets."
+    }
+  ]
+}

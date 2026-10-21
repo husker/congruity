@@ -1,0 +1,39 @@
+{
+  "baselines": [
+    {
+      "id": "fifo",
+      "name": "FIFO",
+      "level": "naive",
+      "command": "uv run python -m experiments.cache_replacement.bench",
+      "notes": "Simple queue baseline."
+    },
+    {
+      "id": "lru",
+      "name": "LRU",
+      "level": "naive",
+      "command": "uv run python -m experiments.cache_replacement.bench",
+      "notes": "Common baseline but not sufficient alone."
+    },
+    {
+      "id": "arc",
+      "name": "ARC",
+      "level": "strong_reproducible",
+      "command": "uv run python -m experiments.cache_replacement.bench",
+      "notes": "Adaptive recency/frequency baseline."
+    },
+    {
+      "id": "sieve",
+      "name": "SIEVE",
+      "level": "strong_reproducible",
+      "command": "uv run python -m experiments.cache_replacement.bench",
+      "notes": "Strong simple eviction baseline from prior verification."
+    },
+    {
+      "id": "s3fifo",
+      "name": "S3FIFO",
+      "level": "strong_reproducible",
+      "command": "uv run python -m experiments.cache_replacement.bench",
+      "notes": "Strong FIFO-family baseline."
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "datasets": [
+    {
+      "id": "synthetic_zipf",
+      "name": "Synthetic Zipf traces",
+      "kind": "generated",
+      "availability": "always",
+      "command": "uv run python -m experiments.cache_replacement.bench",
+      "notes": "Useful but too easy as the only benchmark."
+    },
+    {
+      "id": "synthetic_loop_scan_hot",
+      "name": "Loop, scan, and scan-with-hot traces",
+      "kind": "generated",
+      "availability": "always",
+      "command": "uv run python -m experiments.cache_replacement.bench",
+      "notes": "Stress traces that expose most weak eviction policies."
+    },
+    {
+      "id": "public_block_traces",
+      "name": "Public block traces",
+      "kind": "external_optional",
+      "availability": "optional",
+      "command": "",
+      "notes": "SNIA or MSR-style traces when available locally."
+    }
+  ]
+}

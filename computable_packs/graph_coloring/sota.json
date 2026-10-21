@@ -1,0 +1,25 @@
+{
+  "bar_levels": [
+    {
+      "level": "naive",
+      "available": true,
+      "comparator": "DSATUR color count on the same instances",
+      "source": "experiments/graph_coloring/baselines.py",
+      "notes": "Constructive heuristic; easy to beat, sanity check only."
+    },
+    {
+      "level": "strong_reproducible",
+      "available": true,
+      "comparator": "Descending-k TabuCol seeded from DSATUR at an equal iteration budget on the same instances and seeds",
+      "source": "experiments/graph_coloring/baselines.py",
+      "notes": "Primary local bar. TabuCol remains the core of state-of-the-art hybrid colorers (HEA, quantum/memetic variants), so beating it at equal budget is a real signal."
+    },
+    {
+      "level": "record_cached",
+      "available": false,
+      "comparator": "Best-known color counts for named DIMACS instances",
+      "source": "",
+      "notes": "Records apply only to the exact DIMACS files, which are not bundled; enable after downloading instances and caching the published table."
+    }
+  ]
+}

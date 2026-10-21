@@ -1,0 +1,17 @@
+{
+  "n": 10,
+  "provenance": "MATCHED 2026-07-06 by experiments/heilbronn/polish_hopper.py (v1 free lane, seed 1862, stint 4) - matches the published Comellas & Yebra 2001 best-known 0.0465374196 (exact form: 1st root of 3456x^3-1764x^2+268x-9) to 1.7e-11. Configuration is symmetric about the main diagonal.",
+  "measured_min_area": 0.0465374195825416,
+  "points": [
+    [0.157805568804306, 0.0],
+    [0.747612632460632, 0.0],
+    [0.252387367539371, 1.0],
+    [0.0, 0.157805568804305],
+    [1.0, 0.252387367539371],
+    [1.0, 0.842194431195695],
+    [3.6725799946177e-17, 0.747612632460631],
+    [0.68438886239139, 0.315611137608612],
+    [0.315611137608612, 0.68438886239139],
+    [0.842194431195694, 1.0]
+  ]
+}

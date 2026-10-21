@@ -1,0 +1,25 @@
+{
+  "bar_levels": [
+    {
+      "level": "naive",
+      "available": true,
+      "comparator": "FIFO and LRU on the same traces",
+      "source": "experiments/cache_replacement/bench.py",
+      "notes": "Sanity bar only."
+    },
+    {
+      "level": "strong_reproducible",
+      "available": true,
+      "comparator": "best of ARC, SIEVE, and S3FIFO on the same traces",
+      "source": "experiments/cache_replacement/",
+      "notes": "Primary local bar."
+    },
+    {
+      "level": "record_cached",
+      "available": false,
+      "comparator": "published trace-specific leaderboard or industrial benchmark",
+      "source": "",
+      "notes": "Not currently available in the repo."
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "embedding_compression": [
+    "PQ (Product Quantization)",
+    "OPQ (Optimized PQ)",
+    "RaBitQ",
+    "scalar quantization (int8 / int4)",
+    "Matryoshka representation learning",
+    "additive quantization"
+  ],
+  "cache_replacement": [
+    "LRU",
+    "ARC (Adaptive Replacement Cache)",
+    "SIEVE",
+    "S3FIFO",
+    "FIFO",
+    "LFU"
+  ],
+  "small_points_optimization": [
+    "Simulated annealing (multi-restart)",
+    "SciPy basin hopping",
+    "CMA-ES",
+    "differential evolution",
+    "Halton low-discrepancy initialization + SA"
+  ],
+  "short_string_compression": [
+    "Brotli with shared dictionary",
+    "Zstandard with trained dictionary",
+    "HPACK (stateful, HTTP/2 headers only)",
+    "Smaz (general short-string)"
+  ]
+}

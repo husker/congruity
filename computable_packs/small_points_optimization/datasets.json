@@ -1,0 +1,20 @@
+{
+  "datasets": [
+    {
+      "id": "fixed_n_seed_grid",
+      "name": "Fixed n and seed grid",
+      "kind": "generated",
+      "availability": "always",
+      "command": "uv run python -m experiments.heilbronn.bench",
+      "notes": "Primary reproducible benchmark shape."
+    },
+    {
+      "id": "published_reference_values",
+      "name": "Published geometric reference values",
+      "kind": "reference_table",
+      "availability": "optional",
+      "command": "",
+      "notes": "Used as record-cached comparison when objective definitions match exactly."
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "baselines": [
+    {
+      "id": "greedy",
+      "name": "Randomized greedy rollouts",
+      "level": "naive",
+      "command": "uv run python -m experiments.snake_in_box.bench --split holdout --json",
+      "notes": "Restarted uniform-random legal extensions until stuck."
+    },
+    {
+      "id": "stochastic_beam",
+      "name": "Restarted stochastic beam search (width 48)",
+      "level": "strong_reproducible",
+      "command": "uv run python -m experiments.snake_in_box.bench --split holdout --json",
+      "notes": "Standard heuristic family for snake-in-the-box search; the home-field bar at equal budget. NOT the published record machinery \u2014 that bar lives in records.json once human-transcribed."
+    }
+  ]
+}

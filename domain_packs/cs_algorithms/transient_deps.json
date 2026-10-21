@@ -1,0 +1,6 @@
+{
+  "embedding_compression": ["numpy", "scikit-learn", "datasets (Hugging Face)"],
+  "cache_replacement": [],
+  "small_points_optimization": ["scipy", "cma", "jax"],
+  "short_string_compression": ["brotli", "zstandard", "hpack"]
+}

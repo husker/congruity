@@ -1,0 +1,65 @@
+{
+  "domain": "Circuit codes of spread k (k-coils): longest induced cycle in the hypercube Q_d with Hamming(x,x') >= min(cycle_distance(x,x'), k)",
+  "metric": "coil_length",
+  "metric_note": "coil length N = #edges = #vertices = #transitions (cyclic). Higher is better.",
+  "verified": "2026-07-07 (research cross-check: Byrnes 2017 Table 3 = Hood et al. 2015 on all k>=3 cells; closed-form theorems confirm the proven_optimal frontier).",
+  "definition": "An (d,k) circuit code is a simple cycle C in Q_d such that for any two vertices x,x' on C, d_Hamming(x,x') >= min(d_C(x,x'), k) where d_C = distance along the cycle. Spread 2 = coil-in-the-box. Snake (open path) is a DIFFERENT, ~(k-1)-shorter table - do not cross-reference.",
+  "conventions": {
+    "coil_vs_snake": "coil = closed cycle (this table); snake = open induced path (separate table). Modern usage: snake=open, coil=closed (pre-2000 papers inverted this).",
+    "length": "coil = vertices = edges = transitions; snake = edges = vertices - 1"
+  },
+  "records": [
+    {"d": 6, "k": 3, "length": 16, "status": "proven_optimal"},
+    {"d": 7, "k": 3, "length": 24, "status": "proven_optimal"},
+    {"d": 8, "k": 3, "length": 36, "status": "proven_optimal"},
+    {"d": 9, "k": 3, "length": 64, "status": "best_known", "note": "SMALLEST unproven circuit-code cell. First open cell for k=3. Beat >64 = record; prove 64 optimal = cell closure."},
+    {"d": 10, "k": 3, "length": 102, "status": "best_known"},
+    {"d": 11, "k": 3, "length": 160, "status": "best_known"},
+    {"d": 12, "k": 3, "length": 288, "status": "best_known"},
+    {"d": 13, "k": 3, "length": 494, "status": "best_known"},
+    {"d": 14, "k": 3, "length": 812, "status": "best_known"},
+    {"d": 15, "k": 3, "length": 1380, "status": "best_known"},
+    {"d": 16, "k": 3, "length": 2240, "status": "best_known"},
+    {"d": 17, "k": 3, "length": 3910, "status": "best_known"},
+
+    {"d": 8, "k": 4, "length": 22, "status": "proven_optimal"},
+    {"d": 9, "k": 4, "length": 30, "status": "proven_optimal"},
+    {"d": 10, "k": 4, "length": 46, "status": "proven_optimal"},
+    {"d": 11, "k": 4, "length": 70, "status": "best_known", "note": "first open cell for k=4"},
+    {"d": 12, "k": 4, "length": 102, "status": "best_known"},
+    {"d": 13, "k": 4, "length": 182, "status": "best_known"},
+    {"d": 14, "k": 4, "length": 280, "status": "best_known"},
+    {"d": 15, "k": 4, "length": 480, "status": "best_known"},
+
+    {"d": 11, "k": 5, "length": 40, "status": "proven_optimal"},
+    {"d": 12, "k": 5, "length": 60, "status": "best_known", "note": "first open cell for k=5"},
+    {"d": 13, "k": 5, "length": 80, "status": "best_known"},
+    {"d": 14, "k": 5, "length": 106, "status": "best_known"},
+
+    {"d": 14, "k": 6, "length": 68, "status": "best_known", "note": "first open cell for k=6; closure target"},
+    {"d": 15, "k": 7, "length": 60, "status": "best_known", "note": "first open cell for k=7; closure target"},
+    {"d": 15, "k": 8, "length": 42, "status": "best_known", "note": "first open cell for k=8; closure target"}
+  ],
+  "open_cell_frontier": {
+    "3": {"proven_through_d": 8, "first_open": {"d": 9, "length": 64}},
+    "4": {"proven_through_d": 10, "first_open": {"d": 11, "length": 70}},
+    "5": {"proven_through_d": 11, "first_open": {"d": 12, "length": 60}},
+    "6": {"proven_through_d": 13, "first_open": {"d": 14, "length": 68}},
+    "7": {"proven_through_d": 14, "first_open": {"d": 15, "length": 60}},
+    "8": {"proven_through_d": 14, "first_open": {"d": 15, "length": 42}},
+    "9": {"proven_through_d": 16, "first_open": {"d": 17, "length": 48}}
+  },
+  "campaign_target": "spread-3, d=9-13 (lead with (9,3)=64, (10,3)=102, (11,3)=160). Both outcomes publishable: new record OR cell closure.",
+  "sources": [
+    {"cite": "Hood, Recoskie, Sawada, Wong 2015, J. Combin. Optim. 30(1):42-62", "url": "https://www.socs.uoguelph.ca/~sawada/papers/coil.pdf", "role": "canonical k-coil/k-snake tables (n<=17) with proven-optimal markers"},
+    {"cite": "Byrnes 2017, Bull. ICA 80:40-60", "url": "https://arxiv.org/abs/1604.02755", "role": "master consolidated Table 3 (this grid)"},
+    {"cite": "Paterson & Tuliani 1998, IEEE TIT 44(4)", "url": "https://doi.org/10.1109/18.681327", "role": "single-track constructions; many k-coil LBs"},
+    {"cite": "OEIS A000937 (coil spread-2), A099155 (snake spread-2)", "url": "https://oeis.org/A000937", "role": "spread-2 only; NO OEIS sequence exists for k>=3"},
+    {"cite": "minortriad.com/snake", "url": "https://minortriad.com/snake/", "role": "live spread-2 authority; does NOT cover k>=3"}
+  ],
+  "caveats": [
+    "k=2 (spread-2) column of Byrnes 2017 is STALE for d>=10 - do NOT use it; use minortriad/OEIS. This table is for k>=3 (current).",
+    "k>=3 records are effectively single-lineage (Hood 2015 + Byrnes 2017 agree; closed-form theorems for proven_optimal cells). Treat best_known k>=3 as one well-consolidated LB lineage, not multiply-confirmed.",
+    "A claimed new record must be validated by validate_circuit_code AND hand-checked against Hood/Byrnes before any claim."
+  ]
+}
